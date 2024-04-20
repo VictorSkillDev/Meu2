@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Aceitação</title>
+    <style>
+        body {
+            background-color: pink;
+        }
+
+        .painel {
+            margin: auto;
+            background-color: white;
+            width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            text-align: center;
+            padding-top: 50px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            position: relative;
+        }
+
+        .subir {
+            margin-top: 20px;
+        }
+
+        /* Estilo para o botão de permissão */
+        #permissionButton {
+            padding: 6px 12px;
+            margin-top: 20px;
+            background-color: #ff69b4; /* Cor rosa */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px; /* Tamanho menor do botão */
+            display: none; /* Inicialmente escondido */
+        }
+
+        #permissionButton:hover {
+            background-color: #ff85c0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="painel">
+        <h1>Olha ela aceitou!</h1>
+        <p>Estou ansioso para o nosso date!</p>
+        <img src="https://i.pinimg.com/originals/6f/85/6a/6f856a56f177ba8222b16ca79ead125e.gif" alt="Animação feliz">
+        <h1 class="subir">kkakkakaka</h1>
+        <h3>Se você gostou, me manda mensagem <br> para combinarmos os detalhes.</h3>
+
+        <!-- Botão de permissão para reprodução de áudio -->
+        <button id="permissionButton" onclick="playAudio()">Reproduzir Áudio</button>
+    </div>
+
+    <!-- Áudio de fundo -->
+    <audio id="backgroundAudio" loop>
+        <source src="musicas/musica.mp3" type="audio/mpeg">
+        <source src="musicas/musica.ogg" type="audio/ogg">
+        <source src="musicas/musica.wav" type="audio/wav">
+        <p>Infelizmente, seu navegador não consegue reproduzir áudio. <a href="musicas/musica.mp3">Clique aqui para escutar o áudio</a></p>
+    </audio>
+
+    <script>
+        // Função para reproduzir o áudio
+        function playAudio() {
+            const audio = document.getElementById('backgroundAudio');
+            audio.play().catch((error) => {
+                console.error("Erro ao reproduzir o áudio:", error);
+            });
+        }
+
+        // Verifica se a reprodução automática é permitida ao carregar a página
+        window.onload = function() {
+            const audio = document.getElementById('backgroundAudio');
+            // Tenta reproduzir o áudio
+            audio.play().catch((error) => {
+                // Se a reprodução automática não for permitida, mostra o botão de permissão
+                console.error("Erro ao reproduzir o áudio automaticamente:", error);
+                const permissionButton = document.getElementById('permissionButton');
+                permissionButton.style.display = 'block';
+            });
+        };
+    </script>
+</body>
+
+</html>
